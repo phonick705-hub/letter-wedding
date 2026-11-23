@@ -10,70 +10,63 @@ export function PolaroidHero({ isRevealed }: PolaroidHeroProps) {
   const [imgError, setImgError] = useState(false);
 
   return (
-    <section className="relative flex flex-col items-center px-6 pt-12 pb-10 text-center">
+    <section className="relative flex flex-col items-center px-6 pt-14 pb-10 text-center">
       {/* Top Kicker */}
-      <motion.p
-        initial={{ opacity: 0, y: 10 }}
-        animate={isRevealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-        transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-        className="font-serif-editorial text-[10.5px] font-medium uppercase tracking-[0.26em] text-[#6D6A5F]"
-      >
+      <p className="font-serif-editorial text-[10.5px] font-medium uppercase tracking-[0.26em] text-[#6D6A5F]">
         {WEDDING_INFO.kickerTop}
-      </motion.p>
+      </p>
 
       {/* Couple Names in Graceful Script */}
-      <motion.h1
-        initial={{ opacity: 0, y: 12 }}
-        animate={isRevealed ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
-        transition={{ duration: 0.8, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
-        className="mt-4 font-script text-[52px] leading-[1.05] text-[#3D3C33] text-balance"
-      >
+      <h1 className="mt-4 font-script text-[52px] leading-[1.05] text-[#3D3C33] text-balance">
         {WEDDING_INFO.coupleNameEn}
-      </motion.h1>
+      </h1>
 
       {/* Korean Subtitle */}
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={isRevealed ? { opacity: 1 } : { opacity: 0 }}
-        transition={{ duration: 0.7, delay: 0.28 }}
-        className="mt-1.5 font-kr text-[13px] tracking-[0.14em] text-[#6D6A5F]"
-      >
+      <p className="mt-1.5 font-kr text-[13px] tracking-[0.14em] text-[#6D6A5F]">
         {WEDDING_INFO.coupleSubtitleKr}
-      </motion.p>
+      </p>
 
-      {/* Paper Slit & Ejecting Polaroid Frame */}
-      <div className="relative mt-8 flex w-full flex-col items-center">
-        {/* Die-cut Horizontal Paper Slit (인화구 틈) */}
+      {/* Raised Champagne-Beige Paper Slit & Slowly Ejecting Polaroid Frame */}
+      <div className="relative mt-9 flex w-full flex-col items-center">
+        {/* Champagne-Cream Raised Embossed Paper Slit Bar (matching reference video) */}
         <div
           aria-hidden="true"
-          className="relative z-20 flex w-[282px] flex-col items-center"
+          className="relative z-20 flex w-[288px] flex-col items-center"
         >
-          {/* Upper embossed paper bevel */}
-          <div className="h-[2px] w-full rounded-full bg-white/65" />
-          {/* Dark recessed slot opening */}
+          {/* Outer raised paper frame lip */}
           <div
-            className="h-[7px] w-full rounded-full"
+            className="flex h-[15px] w-full items-center justify-center rounded-full px-2.5"
             style={{
               background:
-                'linear-gradient(180deg, #2D2C25 0%, #4E4B40 65%, #847F70 100%)',
+                'linear-gradient(180deg, #EFE5D3 0%, #DFCEB4 52%, #CEB99B 100%)',
               boxShadow:
-                'inset 0 2px 4px rgba(0,0,0,0.45), 0 1px 0 rgba(255,255,255,0.75)',
+                '0 3px 8px rgba(73, 66, 54, 0.16), inset 0 1px 1px rgba(255, 253, 248, 0.8)',
             }}
-          />
+          >
+            {/* Dark recessed inner slot opening */}
+            <div
+              className="h-[5px] w-full rounded-full"
+              style={{
+                background:
+                  'linear-gradient(180deg, #2B2821 0%, #524C3F 75%, #7C7362 100%)',
+                boxShadow: 'inset 0 2px 3px rgba(0,0,0,0.55)',
+              }}
+            />
+          </div>
         </div>
 
-        {/* Clipping Window directly beneath the slit */}
-        <div className="relative z-10 -mt-[2px] w-full overflow-hidden pt-1 pb-6 flex justify-center">
+        {/* Clipping Window directly beneath the slit center */}
+        <div className="relative z-10 -mt-[5px] flex w-full justify-center overflow-hidden pt-0 pb-6">
           <motion.div
-            initial={{ y: '-110%', rotate: -1.6 }}
+            initial={{ y: '-112%', rotate: -1.4 }}
             animate={
               isRevealed
-                ? { y: '0%', rotate: -0.6 }
-                : { y: '-110%', rotate: -1.6 }
+                ? { y: '0%', rotate: -0.5 }
+                : { y: '-112%', rotate: -1.4 }
             }
             transition={{
-              duration: 1.5,
-              delay: 0.25,
+              duration: 2.15,
+              delay: 0.08,
               ease: [0.22, 1, 0.36, 1],
             }}
             className="w-[248px] bg-[#FCFBF8] p-3 pb-7 shadow-[0_14px_34px_rgba(61,60,51,0.14),0_2px_8px_rgba(61,60,51,0.08)] ring-1 ring-[#49483E]/8"
@@ -98,7 +91,6 @@ export function PolaroidHero({ isRevealed }: PolaroidHeroProps) {
                   </span>
                 </div>
               )}
-              {/* Subtle warm analog film edge overlay */}
               <div
                 aria-hidden="true"
                 className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-black/5"
@@ -119,7 +111,7 @@ export function PolaroidHero({ isRevealed }: PolaroidHeroProps) {
       <motion.p
         initial={{ opacity: 0 }}
         animate={isRevealed ? { opacity: 1 } : { opacity: 0 }}
-        transition={{ duration: 0.7, delay: 0.9 }}
+        transition={{ duration: 0.9, delay: 1.25 }}
         className="mt-1 font-serif-editorial text-[10px] font-medium uppercase tracking-[0.24em] text-[#78756A]"
       >
         {WEDDING_INFO.locationCaptionTop}

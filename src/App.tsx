@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { motion } from 'motion/react';
 import { EnvelopeIntro } from './components/EnvelopeIntro';
 import { PaperTextureOverlay } from './components/PaperTextureOverlay';
 import { PolaroidHero } from './components/PolaroidHero';
@@ -12,6 +13,7 @@ import { AudioToggle } from './components/AudioToggle';
 import { bgmPlayer } from './utils/bgmPlayer';
 
 export default function App() {
+  const [openingStarted, setOpeningStarted] = useState(false);
   const [envelopeOpened, setEnvelopeOpened] = useState(false);
   const [polaroidRevealed, setPolaroidRevealed] = useState(false);
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
@@ -24,6 +26,7 @@ export default function App() {
   }, []);
 
   const handleOpenStart = () => {
+    setOpeningStarted(true);
     const started = bgmPlayer.start();
     if (started) {
       setIsAudioPlaying(true);
@@ -32,7 +35,6 @@ export default function App() {
 
   const handleOpenComplete = () => {
     setEnvelopeOpened(true);
-    // Trigger Polaroid slot reveal immediately after envelope opens
     window.requestAnimationFrame(() => {
       setPolaroidRevealed(true);
     });
@@ -63,8 +65,13 @@ export default function App() {
         {/* Subtle Embossed Cotton Paper Grain */}
         <PaperTextureOverlay opacity={0.22} />
 
-        {/* Main Wedding Invitation Flow */}
-        <div className="relative z-10">
+        {/* Fixed-coordinate invitation layer: stays at exact (0,0) and fades in smoothly as envelope parts */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: openingStarted ? 1 : 0 }}
+          transition={{ duration: 1.45, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+          className="relative z-10"
+        >
           <PolaroidHero isRevealed={polaroidRevealed} />
           <CountdownSection />
           <VenueSection />
@@ -72,14 +79,14 @@ export default function App() {
           <LoveStorySection />
           <QnaSection />
           <RsvpSection />
-        </div>
+        </motion.div>
 
         {/* Floating BGM Mute / Play Toggle */}
         {envelopeOpened && (
           <AudioToggle isPlaying={isAudioPlaying} onToggle={handleToggleAudio} />
         )}
 
-        {/* Envelope Intro Cover */}
+        {/* Envelope Overlay sitting cleanly above the invitation */}
         {!envelopeOpened && (
           <EnvelopeIntro
             onOpenStart={handleOpenStart}
