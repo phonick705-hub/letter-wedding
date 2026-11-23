@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --paper-cream: #f5f0e7;
+    --paper-ivory: #faf7f2;
+    --paper-beige: #ece5d8;
+    --ink-olive-deep: #3d3c33;
+    --ink-taupe: #6d6a5f;
+    --ink-muted: #8c887b;
+    --accent-olive: #6c7258;
+    --accent-blush: #efd2ce;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: #e4ddd1;
+    color: var(--ink-olive-deep);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Gowun Batang', 'Cormorant Garamond', Georgia, serif;
+    background-color: #e4ddd1;
+    color: var(--ink-olive-deep);
+    overflow-x: hidden;
+  }
+}
+
+.font-serif-editorial {
+  font-family: 'Cormorant Garamond', 'Gowun Batang', Georgia, serif;
+}
+
+.font-script {
+  font-family: 'Pinyon Script', cursive;
+}
+
+.font-kr {
+  font-family: 'Gowun Batang', 'Cormorant Garamond', Georgia, serif;
+}
+
+/* Tactile embossed handmade cotton paper surface */
+.paper-emboss {
+  background-color: #f4efe6;
+  background-image:
+    radial-gradient(at 22% 18%, rgba(255, 253, 249, 0.72) 0px, transparent 55%),
+    radial-gradient(at 80% 78%, rgba(226, 217, 202, 0.48) 0px, transparent 58%);
+}
+
+.envelope-emboss {
+  background-color: #e9e2d5;
+  background-image:
+    radial-gradient(at 50% 30%, rgba(255, 252, 246, 0.55) 0px, transparent 62%),
+    radial-gradient(at 50% 85%, rgba(196, 187, 170, 0.42) 0px, transparent 68%);
+}
+
+/* Custom hairline & subtle paper shadow */
+.hairline-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(73, 72, 62, 0.16) 20%,
+    rgba(73, 72, 62, 0.16) 80%,
+    transparent 100%
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "Jaehyun & Haeun — Wedding Invitation",
+  "description": "2027년 5월 29일, 김재현과 정하은의 결혼식에 소중한 분들을 초대합니다.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
